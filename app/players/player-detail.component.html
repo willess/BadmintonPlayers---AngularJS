@@ -1,0 +1,68 @@
+<div class="panel panel-primary" *ngIf="player">
+    <div class="panel-heading">
+        {{ pageTitle }}
+    </div>
+
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <div class='row'>
+
+        <div class="modal fade" id="editPlayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Wijzig speler: {{ player.name }}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="name">Naam:</label>
+                            <input [(ngModel)] = "player.name" type="text" class="form-control" id="name" placeholder="Spelersnaam">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Land:</label>
+                            <input [(ngModel)] = "player.country" type="text" class="form-control" id="country" placeholder="Land">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Geslacht:</label>
+                            <input [(ngModel)] = "player.gender" type="text" class="form-control" id="gender" placeholder="Gender">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                        <button type="button" class="btn btn-primary" (click)="editPlayer()" data-dismiss="modal">Opslaan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    <h1>{{ player.name }}</h1>
+                    <ul>
+                        <li>Country: {{ player.country }}</li>
+                        <li>Gender: {{ player.gender }}</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class='panel-footer'>
+    <a class='btn btn-default' (click)='onBack()' style='width:120px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Terug
+    </a>
+        <a class="btn btn-warning" data-toggle="modal" data-target="#editPlayer" style='width:120px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Wijzig
+    </a>
+        <a class='btn btn-danger' (click)='deletePlayer(id)' style='width:120px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Verwijder
+    </a>
+    </div>
+</div>
+

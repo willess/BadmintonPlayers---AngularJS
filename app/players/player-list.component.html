@@ -1,0 +1,98 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <!-- Filter the Products   -->
+    <div class='panel-body'>
+        <div class='row'>
+
+                    <a class="custom-btn btn btn-success pull-right" data-toggle="modal" data-target="#addPlayer">
+            <i class="glyphicon glyphicon-plus"></i> Speler Toevoegen
+        </a>
+
+                <div class="modal fade" id="addPlayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Nieuwe speler toevoegen</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="name">Naam:</label>
+                            <input [(ngModel)] = "name" type="text" class="form-control" id="name" placeholder="Spelersnaam">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Land:</label>
+                            <input [(ngModel)] = "country" type="text" class="form-control" id="country" placeholder="Land">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Geslacht:</label>
+                            <input [(ngModel)] = "gender" type="text" class="form-control" id="gender" placeholder="Gender">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                        <button type="button" class="btn btn-primary" (click)="addPlayer()" data-dismiss="modal">Toevoegen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class='col-md-2'>Filter bij:</div>
+            <div class='col-md-4'>
+                <input type='text'
+                [(ngModel)]='listFilter' />
+            </div>
+        </div>
+        <div class='row' *ngIf='listFilter'>
+            <div class='col-md-6'>
+                <h3>Gefilterd bij: {{listFilter}} </h3>
+            </div>
+        </div>
+
+        
+
+        <!--<div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>-->
+
+        <div class='table-responsive'>
+            <table class='table'
+                    *ngIf='players && players.length'
+                    >
+                <thead>
+                    <tr>
+                        <th>Afbeelding</th>
+                        <th>Naam</th>
+                        <th>Land</th>
+                        <th>Geslacht</th>
+                        <th>Bekijk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let player of players | playerFilter: listFilter'>
+                        <td>
+                            <img
+                                [src]='imageUrl'
+                                [title]='player.name'
+                                [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'>
+                        </td>
+                        <td><a [routerLink]="['/player', player._id]">{{ player.name }}</a></td>
+                        <td>{{ player.country }}</td>
+                        <td>{{ player.gender }}</td>
+                        <td>
+                            <a [routerLink]="['/player', player._id]"><button class="btn btn-primary">
+                                Bekijk
+                            </button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
